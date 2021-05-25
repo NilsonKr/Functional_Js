@@ -3,6 +3,8 @@ const compose =
 	data =>
 		functions.reduceRight((value, func) => func(value), data);
 
+const itemsList = [];
+
 //Nodes
 const descriptionInput = document.querySelector('#description');
 const caloriesInput = document.querySelector('#calories');
@@ -36,6 +38,27 @@ function handleAdd() {
 		caloriesInput.value &&
 		proteinInput.value
 	) {
-		console.log('Ok!');
+		addItem();
 	}
 }
+
+const addItem = () => {
+	const newItem = {
+		description: descriptionInput.value,
+		calories: parseInt(carbsInput.value),
+		carbs: parseInt(carbsInput.value),
+		proteinInput: parseInt(proteinInput.value),
+	};
+
+	itemsList.push(newItem);
+	cleanInputs();
+
+	console.log(itemsList);
+};
+
+const cleanInputs = () => {
+	descriptionInput.value = '';
+	carbsInput.value = '';
+	caloriesInput.value = '';
+	proteinInput.value = '';
+};
