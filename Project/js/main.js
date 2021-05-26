@@ -3,11 +3,6 @@ import genTag from './lib/genTag.js';
 
 export const itemsList = [];
 
-const compose =
-	(...functions) =>
-	data =>
-		functions.reduceRight((value, func) => func(value), data);
-
 //Nodes
 const submitBtn = document.querySelector('#submit');
 
@@ -23,12 +18,12 @@ document.body.addEventListener('keydown', ev => {
 	}
 });
 
-console.log(
-	genTag({
-		name: 'h1',
-		attrs: {
-			class: 'mx-3 flx-h',
-			id: 'Hello',
-		},
-	})('Hello World!')
-);
+// console.log(
+// 	genTag({
+// 		name: 'h1',
+// 		attrs: {
+// 			class: 'mx-3 flx-h',
+// 			id: 'Hello',
+// 		},
+// 	})('Hello World!')
+// );
