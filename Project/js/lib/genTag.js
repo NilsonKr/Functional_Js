@@ -33,8 +33,10 @@ const buildCell = genTag({ name: 'td' });
 const genCells = values => values.map(buildCell).join('');
 
 const buildRow = genTag({ name: 'tr' });
-
 // First build the cells according to the items passed and then generate a row with the cells built
 const genRow = values => composeFunctions(buildRow, genCells)(values);
 
-export default genRow;
+//Delete Icon
+const trashIcon = genTag({ name: 'i', attrs: { class: 'fas fa-trash-alt' } })('');
+
+export { genTag, trashIcon, genRow };

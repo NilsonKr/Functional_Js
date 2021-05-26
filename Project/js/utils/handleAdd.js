@@ -1,6 +1,6 @@
 import { itemsList } from '../main.js';
 import updateTotals from './getTotals.js';
-import renderItems from './renderItem.js';
+import { render } from './renderItem.js';
 
 const descriptionInput = document.querySelector('#description');
 const caloriesInput = document.querySelector('#calories');
@@ -26,7 +26,7 @@ function handleAdd() {
 const addItem = () => {
 	const newItem = {
 		description: descriptionInput.value,
-		calories: parseInt(carbsInput.value),
+		calories: parseInt(caloriesInput.value),
 		carbs: parseInt(carbsInput.value),
 		proteins: parseInt(proteinInput.value),
 	};
@@ -34,10 +34,8 @@ const addItem = () => {
 	itemsList.push(newItem);
 	cleanInputs();
 
-	renderItems(itemsList);
+	render(itemsList);
 	updateTotals(itemsList);
-
-	console.log(itemsList);
 };
 
 const cleanInputs = () => {

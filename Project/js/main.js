@@ -1,5 +1,5 @@
 import handleAdd from './utils/handleAdd.js';
-import genTag from './lib/genTag.js';
+import { deleteNode } from './utils/renderItem.js';
 
 export const itemsList = [];
 
@@ -8,6 +8,14 @@ const submitBtn = document.querySelector('#submit');
 
 //Events
 submitBtn.addEventListener('click', handleAdd);
+
+document.body.addEventListener('click', ev => {
+	const target = ev.target;
+
+	if (target.id === 'deleteBtn') {
+		deleteNode(target.dataset.index);
+	}
+});
 
 document.body.addEventListener('keydown', ev => {
 	const inputsId = ['description', 'calories', 'carbs', 'proteins'];
