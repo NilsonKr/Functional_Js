@@ -1,30 +1,40 @@
-import compose from '../utils/compose.js';
+import composeFunctions from '../utils/compose.js';
 
-//Compose Functions
+// const valuesList = ['Apple', '8', '10', '2', 'removeBtn'];
 
-const itemsList = ['hey', 'happy', 'hacking!'];
+/*********
+Object Example for genTag()
 
-const getAttr = (attrObj = {}) => {
-	const attributes = [];
-
-	for (const attr in attrObj) {
-		attributes.push(` ${attr}="${attrObj[attr]}" `);
-	}
-
-	return attributes.join(' ');
+const exampleObj = {
+	name: 'h1',
+	attrs: {
+		class: 'setColor setHeight',
+		id: 'mainTitle',
+	},
 };
 
-const genTag = tag => content =>
-	`<${tag.name} ${getAttr(tag.attrs)} >${content}</${tag.name}>`;
+*********/
 
-//Generate Rows And Cells
-const buildRow = genTag({ name: 'tr' });
+const setAttributes = (attrs = {}) => {
+	const newAttrs = [];
+
+	for (const attribute in attrs) {
+		newAttrs.push(`${attribute}="${attrs[attribute]}"`);
+	}
+
+	return newAttrs.join('');
+};
+
+const genTag = tagObj => content =>
+	`<${tagObj.name} ${setAttributes(tagObj.attrs)} >${content}</${tagObj.name}>`;
+
+// Gen Table Rows and Cells
 const buildCell = genTag({ name: 'td' });
+const genCells = values => values.map(buildCell).join('');
 
-const genTableCells = items => items.map(buildCell).join('');
+const buildRow = genTag({ name: 'tr' });
 
-const genTableRows = compose(buildRow, genTableCells);
-
-console.log(genTableRows(itemsList));
+// First build the cells according to the items passed and then generate a row with the cells built
+const fillRow = values => composeFunctions(buildRow, genCells)(values);
 
 export default genTag;
