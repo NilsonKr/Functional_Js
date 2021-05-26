@@ -35,6 +35,6 @@ const genCells = values => values.map(buildCell).join('');
 const buildRow = genTag({ name: 'tr' });
 
 // First build the cells according to the items passed and then generate a row with the cells built
-const fillRow = values => composeFunctions(buildRow, genCells)(values);
+const genRow = values => composeFunctions(buildRow, genCells)(values);
 
-export default genTag;
+export default genRow;
